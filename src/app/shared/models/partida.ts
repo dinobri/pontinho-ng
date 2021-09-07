@@ -4,10 +4,10 @@ export class Partida {
   valorFicha!: number;
   quantidadeFichasLagrima!: number;
   quantidadeFichasEstourada!: number;
-  valorBolao!: number;
+  valorBolao?: number;
 
-  jogadores!: Jogador[];
-  rodadas!: Rodada[];
+  jogadores?: Jogador[];
+  rodadas?: Rodada[];
 
   constructor() {}
 }

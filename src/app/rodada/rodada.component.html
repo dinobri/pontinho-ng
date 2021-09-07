@@ -1,0 +1,38 @@
+<section>
+  <div class="container">
+    <div class="row"><div class="col"><h2>Dados da Rodada</h2></div></div>
+    <div class="row">
+      <div class="col">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Saldo (R$)</th>
+              <th>Pontuação na rodada</th>
+              <th>Pontuação geral</th>
+              <th>Pontos para estourar</th>
+              <th>Estourou?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let jogador of jogadores">
+              <td>{{jogador.nome}}</td>
+              <td>{{jogador.saldo | currency}}</td>
+              <td>
+                <button (click)="alterarPontuacaoRodada(jogador, 5)"> >> </button>
+                <button (click)="alterarPontuacaoRodada(jogador, 1)"> > </button>
+                <span>{{jogador.pontuacaoRodada}}</span>
+                <button (click)="alterarPontuacaoRodada(jogador, -1)"><</button>
+                <button (click)="alterarPontuacaoRodada(jogador, -5)"><<</button>
+
+              </td>
+              <td>{{jogador.pontuacaoGeral}}</td>
+              <td>{{100 - jogador.pontuacaoGeral}}</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

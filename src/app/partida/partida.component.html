@@ -1,0 +1,21 @@
+<header>
+    <div class="container">
+      <div class="row"><div class="col"><h2>Dados da Partida</h2></div></div>
+      <div class="row">
+        <div class="col">
+          <span>Valor da ficha: {{partida.valorFicha}}</span>
+        </div>
+        <div class="col">
+          <span>Lágrima: {{partida.quantidadeFichasLagrima}}</span>
+        </div>
+        <div class="col">
+          <span>Estourada: {{partida.quantidadeFichasEstourada}}</span>
+        </div>
+        <div class="col">
+          <span *ngIf="partida.valorBolao">Bolão: {{partida.valorBolao}}</span>
+        </div>
+      </div>
+    </div>
+</header>
+
+<app-rodada [jogadores]="partida.jogadores"></app-rodada>
