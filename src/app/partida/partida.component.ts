@@ -1,3 +1,4 @@
+import { PartidaService } from './../shared/services/partida.service';
 import { Jogador } from './../shared/models/jogador';
 import { JOGADORES } from './../mock.jogadores';
 import { Partida } from './../shared/models/partida';
@@ -11,14 +12,9 @@ import { Component, OnInit } from '@angular/core';
 export class PartidaComponent implements OnInit {
   partida!: Partida;
 
-  constructor() {}
+  constructor(private partidaService: PartidaService) {}
 
   ngOnInit(): void {
-    this.partida = {
-      valorFicha: 0.1,
-      quantidadeFichasLagrima: 1,
-      quantidadeFichasEstourada: 2,
-      jogadores: JOGADORES,
-    };
+    this.partida = this.partidaService.getPartida();
   }
 }

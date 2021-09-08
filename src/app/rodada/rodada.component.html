@@ -1,38 +1,78 @@
-<section>
-  <div class="container">
-    <div class="row"><div class="col"><h2>Dados da Rodada</h2></div></div>
-    <div class="row">
-      <div class="col">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Saldo (R$)</th>
-              <th>Pontuação na rodada</th>
-              <th>Pontuação geral</th>
-              <th>Pontos para estourar</th>
-              <th>Estourou?</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let jogador of jogadores">
-              <td>{{jogador.nome}}</td>
-              <td>{{jogador.saldo | currency}}</td>
-              <td>
-                <button (click)="alterarPontuacaoRodada(jogador, 5)"> >> </button>
-                <button (click)="alterarPontuacaoRodada(jogador, 1)"> > </button>
-                <span>{{jogador.pontuacaoRodada}}</span>
-                <button (click)="alterarPontuacaoRodada(jogador, -1)"><</button>
-                <button (click)="alterarPontuacaoRodada(jogador, -5)"><<</button>
+<section class="card">
+  <div class="card-body">
+    <h2 class="card-title">Dados da partida</h2>
 
-              </td>
-              <td>{{jogador.pontuacaoGeral}}</td>
-              <td>{{100 - jogador.pontuacaoGeral}}</td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div id="jogadores">
+      <header class="d-none d-lg-block text-center">
+        <div class="row">
+          <div class="col-3">
+            <span>Nome</span>
+          </div>
+          <div class="col-1">
+            <span>Saldo</span>
+          </div>
+          <div class="col-4">
+            <span>Pontuação na rodada</span>
+          </div>
+          <div class="col-1">
+            <span>Pontuação geral</span>
+          </div>
+          <div class="col-1">
+            <span>Pontos para estourar</span>
+          </div>
+          <div class="col-1">
+            <span>Estourou?</span>
+          </div>
+          <div class="col-1">
+            <span>...</span>
+          </div>
+        </div>
+      </header>
+      <article>
+        <div class="row" *ngFor="let jogador of jogadores">
+          <div class="col-3">
+            <span>{{ jogador.nome }}</span>
+          </div>
+          <div class="col-1">
+            <span>{{ jogador.saldo | currency }}</span>
+          </div>
+          <div class="col-4 text-center">
+            <div class="row">
+              <div class="col-5">
+                <button class="btn btn-outline-danger" (click)="alterarPontuacaoRodada(jogador, -5)">
+                  <span class="fa fa-fw fa-angle-double-left"></span>
+                </button>
+                <button class="btn btn-outline-danger"  (click)="alterarPontuacaoRodada(jogador, -1)">
+                  <span class="fa fa-fw fa-angle-left"></span>
+                </button>
+              </div>
+              <div class="col-2">
+                <span>{{ jogador.pontuacaoRodada }}</span>
+              </div>
+              <div class="col-5">
+                <button class="btn btn-outline-primary"  (click)="alterarPontuacaoRodada(jogador, 1)">
+                  <span class="fa fa-fw fa-angle-right"></span>
+                </button>
+                <button class="btn btn-outline-primary"  (click)="alterarPontuacaoRodada(jogador, 5)">
+                  <span class="fa fa-fw fa-angle-double-right"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-1">
+            <span>{{ jogador.pontuacaoGeral }}</span>
+          </div>
+          <div class="col-1">
+            <span>{{ 100 - jogador.pontuacaoGeral }}</span>
+          </div>
+          <div class="col-1">
+            <span>Estourou?</span>
+          </div>
+          <div class="col-1">
+            <span>...</span>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
