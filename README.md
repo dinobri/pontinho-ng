@@ -1,4 +1,5 @@
-# PontinhoNg
+# pontinho-ng
+Nova versão do controlador de pontos do jogo de baralho: Pontinho.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.0.
 
