@@ -1,8 +1,8 @@
+import { Injectable } from '@angular/core';
+import { JOGADORES } from './../../mock.jogadores';
 import { Pontuacao } from './../models/pontucao';
 import { Rodada } from './../models/rodada';
-import { JOGADORES } from './../../mock.jogadores';
 import { Partida } from './../models/partida';
-import { Injectable } from '@angular/core';
 import { Jogador } from '../models/jogador';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class PartidaService {
   }
 
   iniciarPartida(): void {
-    this.coletarEstouradasIniciais();
+    this.coletarEstouradas(this.partida.jogadores);
     this.iniciarNovaRodada();
   }
 
@@ -29,7 +29,6 @@ export class PartidaService {
   }
 
   encerrarRodada(): void {
-    debugger;
     // 1 - validar fim da rodada
     let jogadoresComZero: Jogador[] = this.partida.jogadores.filter(
       (j) => j.pontuacaoRodada === 0
@@ -58,14 +57,20 @@ export class PartidaService {
     this.partida.rodadas.push(novaRodada);
 
     // somar pontuações
-    this.partida.jogadores.forEach((j) => j.incrementarPontucaoRodada());
+    this.somarPontucoesDaRodada();
 
-    // validar fim do jogo
-    if (this.verificarFimDaPartida()) {
+    // identificar estourados
+    let estourados = this.buscarEstourados();
+
+    // cerifica se chegou ao fim do jogo
+    if (estourados.length === this.partida.jogadores.length - 1) {
       this.encerrarPartida();
 
       return;
     }
+
+    // tratar pontuação dos estourados
+    this.tratarEstourados(estourados);
 
     // entregar lágrima para o vencedor
     vencedor.incrementarSaldo(
@@ -95,21 +100,41 @@ export class PartidaService {
     this.partida.valorBolao = 0;
   }
 
-  private coletarEstouradasIniciais() {
-    this.partida.jogadores.forEach((j) => {
-      j.decrementarSaldo(this.partida.getValorEstourada());
-      this.partida.valorBolao += this.partida.quantidadeFichasEstourada;
-    });
-  }
-
-  private coletarLagrimas() {
+  private coletarLagrimas(): void {
     this.partida.jogadores.forEach((j) => {
       j.decrementarSaldo(this.partida.getValorLagrima());
     });
   }
 
-  private verificarFimDaPartida(): boolean {
-    // TODO
-    return false;
+  private coletarEstouradas(jogadores: Jogador[]): void {
+    jogadores.forEach((j) => {
+      j.decrementarSaldo(this.partida.getValorEstourada());
+      this.partida.valorBolao += this.partida.quantidadeFichasEstourada;
+    });
+  }
+
+  private buscarEstourados(): Jogador[] {
+    return this.partida.jogadores.filter((j) => j.pontuacaoGeral >= 100);
+  }
+
+  private somarPontucoesDaRodada(): void {
+    this.partida.jogadores.forEach((j) => j.incrementarPontucaoRodada());
+  }
+
+  private tratarEstourados(estourados: Jogador[]): void {
+    //verifica e atribui maior pontuação abaixo de 100
+    let maiorPontuacaoValida = this.partida.jogadores
+      .filter((j) => j.pontuacaoGeral < 100)
+      .reduce((anterior, atual) =>
+        anterior.pontuacaoGeral > atual.pontuacaoGeral ? anterior : atual
+      ).pontuacaoGeral;
+
+    estourados.forEach((j) => (j.pontuacaoGeral = maiorPontuacaoValida));
+
+    // coleta estourada
+    this.coletarEstouradas(estourados);
+
+    // informa quem estourou
+    console.log(estourados);
   }
 }
