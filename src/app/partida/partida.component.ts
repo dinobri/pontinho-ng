@@ -11,10 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PartidaComponent implements OnInit {
   partida!: Partida;
+  isIniciada: boolean = false;
 
   constructor(private partidaService: PartidaService) {}
 
   ngOnInit(): void {
     this.partida = this.partidaService.getPartida();
+  }
+
+  iniciarPartida(): void {
+    this.isIniciada = true;
+    this.partidaService.iniciarPartida();
+  }
+
+  encerrarPartida(): void {
+    this.isIniciada = false;
+    this.partidaService.encerrarPartida();
+  }
+
+  encerrarRodada(): void {
+    this.partidaService.encerrarRodada();
   }
 }

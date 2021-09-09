@@ -1,5 +1,5 @@
 import { Jogador } from './../shared/models/jogador';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-rodada',
@@ -9,7 +9,16 @@ import { Component, Input, OnInit } from '@angular/core';
 export class RodadaComponent implements OnInit {
   @Input()
   jogadores?: Jogador[];
-  constructor() {}
+
+  @Input()
+  isPartidaIniciada: boolean;
+
+  @Output()
+  rodadaEncerrada = new EventEmitter();
+
+  constructor() {
+    this.isPartidaIniciada = false;
+  }
 
   ngOnInit(): void {}
 
