@@ -76,6 +76,12 @@ export class PartidaService {
     vencedor.incrementarSaldo(
       this.partida.getValorLagrima() * this.partida.jogadores.length
     );
+    console.log(
+      `O jogador ${vencedor.nome} ganhou \$ ${
+        this.partida.getValorLagrima() * this.partida.jogadores.length
+      }.`
+    );
+
 
     // iniciar nova rodada
     this.iniciarNovaRodada();
