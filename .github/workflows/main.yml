@@ -6,7 +6,7 @@ on:
   # PASTA_DEPLOY: pasta_deploy
 jobs:
   build:
-    name: Build
+    name: Build e FTP
     runs-on: ubuntu-latest
 
     steps:
@@ -35,7 +35,6 @@ jobs:
           password: ${{ secrets.ftp_password }}
           local-dir: ./dist/
           server-dir: ./pontinho-ng/
-          dry-run: true
 
   # deploy:
   #   name: Implantação via FTP
