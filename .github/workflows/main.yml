@@ -2,7 +2,7 @@ name: Build e FTP
 on:
   push:
     branches: main
-env:
+# env:
   # PASTA_DEPLOY: pasta_deploy
 jobs:
   build:
