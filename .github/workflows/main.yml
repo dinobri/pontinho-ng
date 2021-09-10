@@ -10,31 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 12.0
+      - name: Checkout do repositório
+        uses: actions/checkout@v2
+      - name: Configura Node.js 12.0
         uses: actions/setup-node@v2
         with:
           node-version: 12.0
           cache: "npm"
-      - run: npm ci
-      - run: npm run build-dinobri
+      - name: Instala app
+        run: npm ci
+      - name: Constrói app
+        run: npm run build-dinobri
       # - run: npm test
       # - name: Separa pasta de deploy
       #   uses: actions/upload-artifact@v2
       #   with:
       #     name: ${{env.PASTA_DEPLOY}}
       #     path: dist
-
-  deploy:
-    name: Implantação via FTP
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      # - name: Busca pasta de deploy
-      #   uses: actions/download-artifact@v2
-      #     with:
-      #       name: ${{env.PASTA_DEPLOY}}
       - name: 📂 Envia arquivos para host
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
@@ -44,4 +36,24 @@ jobs:
           local-dir: ./dist/
           server-dir: ./pontinho-ng/
           dry-run: true
+
+  # deploy:
+  #   name: Implantação via FTP
+  #   needs: build
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     # - name: Busca pasta de deploy
+  #     #   uses: actions/download-artifact@v2
+  #     #     with:
+  #     #       name: ${{env.PASTA_DEPLOY}}
+  #     - name: 📂 Envia arquivos para host
+  #       uses: SamKirkland/FTP-Deploy-Action@4.1.0
+  #       with:
+  #         server: ${{ secrets.ftp_host }}
+  #         username: ${{ secrets.ftp_user }}
+  #         password: ${{ secrets.ftp_password }}
+  #         local-dir: ./dist/
+  #         server-dir: ./pontinho-ng/
+  #         dry-run: true
 
