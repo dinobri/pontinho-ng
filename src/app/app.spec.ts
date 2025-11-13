@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { PontinhoApp } from './pontinho';
+import { PontinhoApp } from './app/app';
 
 describe('PontinhoNgApp', () => {
   beforeEach(async () => {

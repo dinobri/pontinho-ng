@@ -1,0 +1,26 @@
+<div class="container">
+  <p-card>
+    <div class="header">
+      <h2>Configuração da Partida</h2>
+    </div>
+    <div class="form">
+      <label>Valor de cada ficha (R$)</label>
+      <p-inputNumber [(ngModel)]="configuracao().valorFicha" mode="currency" currency="BRL" locale="pt-BR" [min]="0.01"
+        [step]="0.5" />
+      <label>Fichas para Lágrima</label>
+      <p-inputNumber [(ngModel)]="configuracao().fichasLagrima" [min]="1" [showButtons]="true" />
+      <small>Valor por jogador: {{ (configuracao().valorFicha * configuracao().fichasLagrima) | currency:'BRL'
+        }}</small>
+
+      <label>Fichas para Estourada</label>
+      <p-inputNumber [(ngModel)]="configuracao().fichasEstourada" [min]="1" [showButtons]="true" />
+      <small>Valor da estourada: {{ (configuracao().valorFicha * configuracao().fichasEstourada) | currency:'BRL'
+        }}</small>
+    </div>
+
+    <div class="footer">
+      <p-button label="Voltar" (onClick)="voltar()" severity="secondary" [outlined]="true"></p-button>
+      <p-button label="Próximo" (onClick)="proximo()"></p-button>
+    </div>
+  </p-card>
+</div>
