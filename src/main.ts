@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { App } from './app/app';
+import { appConfig } from './pontinho/pontinho.config';
+import { PontinhoApp } from './pontinho/pontinho';
 
-bootstrapApplication(App, appConfig)
+bootstrapApplication(PontinhoApp, appConfig)
   .catch((err) => console.error(err));
