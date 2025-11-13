@@ -1,0 +1,35 @@
+Table jogador {
+  id integer
+  nome varchar
+  pontuacaoRodada integer
+  pontuacaoGeral integer
+}
+
+Table pontuacaoRodada {
+  id integer
+  jogador_id integer [ref: > jogador.id]
+  rodada_id integer [ref: > rodada.id]
+  pontos integer
+}
+
+Table rodada {
+  id integer
+  numero integer
+  vencedor_id integer [ref: > jogador.id]
+}
+
+Table partida {
+  id integer
+  dataInicio datetime
+  dataFim datetime
+  premioBolao decimal
+  config_id integer [ref: > configuracao_partida.id]
+  vencedor_id integer [ref: > jogador.id]
+}
+
+Table configuracao_partida {
+  id integer
+  valorLagrima integer
+  valorEstourada integer
+  quantidadePontosEstourada integer
+}
