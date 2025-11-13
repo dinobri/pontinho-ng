@@ -1,11 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'pontinho-root',
-  imports: [RouterOutlet, ButtonModule, CommonModule],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

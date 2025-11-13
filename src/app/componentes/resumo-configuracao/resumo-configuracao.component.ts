@@ -12,11 +12,11 @@ import { Jogador } from '../../modelo/jogador';
   selector: 'app-resumo-configuracao',
   imports: [ButtonModule, CardModule, TableModule, DividerModule, CurrencyPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './resumo-configuracao.component.html'
-  // styles: [\`
-  //   .container{padding:1rem}
-  //   .footer{display:flex;justify-content:space-between;margin-top:1rem}
-  // \`],
+  templateUrl: './resumo-configuracao.component.html',
+  styles: [`
+    .container{padding:1rem}
+    .footer{display:flex;justify-content:space-between;margin-top:1rem}
+  `],
 })
 export class ResumoConfiguracaoComponent {
   private readonly partidaService = new PartidaService();

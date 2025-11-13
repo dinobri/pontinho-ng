@@ -23,12 +23,12 @@ import { CardModule } from 'primeng/card';
       </p-card>
     </div>
   `,
-  // styles: [\`
-  //   .container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
-  //   .content{text-align:center;padding:2rem}
-  //   h1{margin:0 0 .5rem 0}
-  //   .subtitle{margin:0 0 1.5rem 0;color:var(--text-color-secondary)}
-  // \`],
+    styles: [`
+      .container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
+      .content{text-align:center;padding:2rem}
+      h1{margin:0 0 .5rem 0}
+      .subtitle{margin:0 0 1.5rem 0;color:var(--text-color-secondary)}
+    `],
 })
 export class InicioComponent {
   private readonly router = Router;

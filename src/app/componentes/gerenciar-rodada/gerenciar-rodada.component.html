@@ -15,7 +15,10 @@
           <td>{{ j.nome }}</td>
           <td>{{ j.pontuacaoGeral }}</td>
           <td>{{ j.saldo }}</td>
-          <td><span *ngIf="j.estourou">Estourou</span><span *ngIf="!j.estourou">Ativo</span></td>
+          <td>
+            @if(j.estourou) {<span>Estourou</span>}
+            @if(!j.estourou) {<span>Ativo</span>}
+          </td>
         </tr>
       </ng-template>
     </p-table>
@@ -23,7 +26,7 @@
 
   @if (partida()) {
 
-  <p-card *ngIf="partida()">
+  <p-card>
     <h3>Registrar Rodada {{ partida()?.rodadas?.length }}</h3>
 
     <label>Vencedor</label>

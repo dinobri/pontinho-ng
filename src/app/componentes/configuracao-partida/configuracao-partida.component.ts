@@ -13,11 +13,11 @@ import { CurrencyPipe } from '@angular/common';
   imports: [ButtonModule, CardModule, InputNumberModule, FormsModule, CurrencyPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './configuracao-partida.component.html',
-  // styles: [\`
-  //   .container{padding:1rem;min-height:100vh}
-  //   .form{display:flex;flex-direction:column;gap:1rem}
-  //   .footer{display:flex;justify-content:space-between;margin-top:1rem}
-  // \],
+  styles: [`
+    .container{padding:1rem;min-height:100vh}
+    .form{display:flex;flex-direction:column;gap:1rem}
+    .footer{display:flex;justify-content:space-between;margin-top:1rem}
+  `],
 })
 export class ConfiguracaoPartidaComponent {
   protected readonly configuracao = signal<ConfiguracaoPartida>(ConfiguracaoPartida.criarConfiguracaoPartidaPadrao());

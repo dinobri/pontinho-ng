@@ -15,9 +15,116 @@ import { FormsModule } from '@angular/forms';
   imports: [ButtonModule, CardModule, TableModule, InputNumberModule, DividerModule, TagModule, DialogModule, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './gerenciar-rodada.component.html',
-  // styles: [\`
-  //   .container{padding:1rem;display:flex;flex-direction:column;gap:1rem}
-  // \`],
+  styles: [`
+    .container {
+      min-height: 100vh;
+      padding: 1rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .header {
+      padding: 1rem 1.5rem 0;
+    }
+
+    h3, h4 {
+      margin: 0;
+    }
+
+    .resumo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.75rem;
+      background: var(--surface-50);
+      border-radius: var(--border-radius);
+    }
+
+    .label {
+      font-size: 0.875rem;
+      color: var(--text-color-secondary);
+    }
+
+    .value {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .help-text {
+      color: var(--text-color-secondary);
+      font-size: 0.875rem;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    .rodada-finalizada {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .dialog-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .dialog-content h2 {
+      margin: 0;
+      color: var(--primary-color);
+    }
+
+    .vencedor-info {
+      background: var(--surface-50);
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      width: 100%;
+    }
+
+    .vencedor-info p {
+      margin: 0.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      :host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+      }
+
+      .resumo {
+        grid-template-columns: 1fr;
+      }
+    }
+  `],
 })
 export class GerenciarRodadaComponent {
   private readonly partidaService = new PartidaService();
